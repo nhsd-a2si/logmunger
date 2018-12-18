@@ -8,8 +8,18 @@ class ArgParseTestCase(unittest.TestCase):
         with self.assertRaises(SystemExit):
             logmunger.parse_args([])
 
-    def test_no_exit_with_sfslog_arg(self):
-        try:
+    def test_exit_with_just_sfslog_arg(self):
+        with self.assertRaises(SystemExit):
             logmunger.parse_args(['--sfslog', 'somefile.txt'])
+
+    def test_exit_with_just_doslog_arg(self):
+        with self.assertRaises(SystemExit):
+            logmunger.parse_args(['--doslog', 'somefile.txt'])
+
+    def test_no_exit_with_sfslog_and_doslog_args(self):
+        try:
+            logmunger.parse_args(
+                ['--sfslog', 'somefile.txt',
+                 '--doslog', 'somefile.txt'])
         except SystemExit:
             self.fail('SystemExit raised unexpectedly!')
