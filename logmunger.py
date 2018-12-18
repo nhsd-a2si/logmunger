@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
+import datetime
+import re
 import sys
+
+RE_PARSE_SFS_LINE = re.compile(
+    '(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})'
+)
 
 
 def parse_args(args):
@@ -15,6 +21,15 @@ def parse_args(args):
                         help='path to CSV file containing DoS logs',
                         required=True)
     return parser.parse_args(args)
+
+
+def parse_sfs_line(sfs_line):
+    log_event = dict()
+    match = RE_PARSE_SFS_LINE.search(sfs_line)
+    if match:
+        log_event['timestamp'] = datetime.datetime.strptime(
+            match.group('timestamp'), '%Y-%m-%d %H:%M:%S')
+    return log_event
 
 
 if __name__ == '__main__':
