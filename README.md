@@ -34,3 +34,16 @@ Output is written to stdout. If you want that in a file then just direct the out
 ```
 $ ./logmunger.py --sfslog=SFS_LOG_FILE.txt --doslog=DOS_LOG_FILE.csv > MYAWESOMEOUTPUT.csv
 ```
+
+## Maintenance
+
+### Running tests
+
+Run the unit test suite either using Make:
+```
+$ make test
+```
+or by direct command line:
+```
+$ python3 -m unittest
+```
