@@ -23,3 +23,10 @@ class ArgParseTestCase(unittest.TestCase):
                  '--doslog', 'somefile.txt'])
         except SystemExit:
             self.fail('SystemExit raised unexpectedly!')
+
+    def test_both_filename_argument_parsed(self):
+        parser = logmunger.parse_args(
+                    ['--sfslog', 'sfslog.txt',
+                     '--doslog', 'doslog.csv'])
+        self.assertEqual('sfslog.txt', parser.sfslog)
+        self.assertEqual('doslog.csv', parser.doslog)
