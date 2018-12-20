@@ -38,6 +38,13 @@ def parse_sfs_line(sfs_line):
     return log_event
 
 
+def parse_dos_row_dict(dos_row_dict):
+    log_event = dict()
+    log_event['timestamp'] = datetime.datetime.strptime(
+        dos_row_dict['Date & Time'][:19], '%Y/%m/%d %H:%M:%S')
+    return log_event
+
+
 def merge_logs(sfs_log, dos_log):
     result = copy.deepcopy(sfs_log)
     for (timestamp, payload) in result.items():
