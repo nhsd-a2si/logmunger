@@ -28,3 +28,22 @@ class ParseSFSLineTestCase(unittest.TestCase):
         sfs_log_event = logmunger.parse_sfs_line(EXAMPLE_SFS_LINE)
         timestamp = sfs_log_event['timestamp']
         self.assertEqual(0, timestamp.microsecond)
+
+    def test_line_payload_values_extracted(self):
+        sfs_log_event = logmunger.parse_sfs_line(EXAMPLE_SFS_LINE)
+        self.assertEqual('W1A 1AA', sfs_log_event['postcode'])
+        self.assertEqual('60', sfs_log_event['searchDistance'])
+        self.assertEqual('24', sfs_log_event['whenServiceNeeded'])
+        self.assertEqual(
+            [
+                {'dataSource': 'DIRECTORY_OF_SERVICES', 'sourceId': 14011},
+                {'dataSource': 'DIRECTORY_OF_SERVICES', 'sourceId': 14012}
+            ],
+            sfs_log_event['serviceTypes']
+        )
+
+    def test_line_payload_nulls_are_None(self):
+        sfs_log_event = logmunger.parse_sfs_line(EXAMPLE_SFS_LINE)
+        self.assertEqual(None, sfs_log_event['gpPracticeId'])
+        self.assertEqual(None, sfs_log_event['ageGroup'])
+        self.assertEqual(None, sfs_log_event['gender'])

@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 import datetime
+import json
 import re
 import sys
 
 RE_PARSE_SFS_LINE = re.compile(
     '(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})'
+    '.*'
+    'payload=(?P<payload>\{.*\})[^}]+'  # Match up to the last closing brace
 )
 
 
@@ -29,6 +32,8 @@ def parse_sfs_line(sfs_line):
     if match:
         log_event['timestamp'] = datetime.datetime.strptime(
             match.group('timestamp'), '%Y-%m-%d %H:%M:%S')
+        payload = json.loads(match.group('payload'))
+        log_event.update(payload)
     return log_event
 
 
