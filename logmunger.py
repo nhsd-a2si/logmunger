@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import copy
 import datetime
 import json
 import re
@@ -38,10 +39,11 @@ def parse_sfs_line(sfs_line):
 
 
 def merge_logs(sfs_log, dos_log):
-    for (timestamp, payload) in sfs_log.items():
+    result = copy.deepcopy(sfs_log)
+    for (timestamp, payload) in result.items():
         if timestamp in dos_log:
             payload.update(dos_log[timestamp])
-    return sfs_log
+    return result
 
 if __name__ == '__main__':
     parse_args(sys.argv[1:])
