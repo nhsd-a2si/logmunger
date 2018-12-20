@@ -37,5 +37,8 @@ def parse_sfs_line(sfs_line):
     return log_event
 
 
+def merge_logs(sfs_log, dos_log):
+    return {}
+
 if __name__ == '__main__':
     parse_args(sys.argv[1:])
