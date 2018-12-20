@@ -1,6 +1,6 @@
 import unittest
 
-from .context import logmunger
+from ..context import logmunger
 
 EXAMPLE_SFS_LINE = (
     '| 2018-11-13 12:40:42.902 | 2018-11-13 12:40:42.902 [32m INFO[m '

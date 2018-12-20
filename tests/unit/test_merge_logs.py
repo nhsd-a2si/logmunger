@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from .context import logmunger
+from ..context import logmunger
 
 TIMESTAMP_1 = datetime.datetime(year=2018, month=12, day=7,
                                 hour=12, minute=3, second=3)

@@ -1,6 +1,6 @@
 import unittest
 
-from .context import logmunger
+from ..context import logmunger
 
 
 class ArgParseTestCase(unittest.TestCase):

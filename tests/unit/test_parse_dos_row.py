@@ -1,6 +1,6 @@
 import unittest
 
-from .context import logmunger
+from ..context import logmunger
 
 EXAMPLE_DOS_ROW_DICT = {
     '_raw': 'foo|bar|baz|bang',
