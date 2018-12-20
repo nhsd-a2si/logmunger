@@ -38,6 +38,9 @@ def parse_sfs_line(sfs_line):
 
 
 def merge_logs(sfs_log, dos_log):
+    for (timestamp, payload) in sfs_log.items():
+        if timestamp in dos_log:
+            payload.update(dos_log[timestamp])
     return sfs_log
 
 if __name__ == '__main__':
