@@ -1,3 +1,4 @@
+import datetime
 import io
 import unittest
 
@@ -18,4 +19,52 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
         self.assertEqual(
             EXPECTED_CSV_HEADER,
             output_file.getvalue()
+        )
+
+    def test_csv_is_correct(self):
+        merged_data_dict = {
+            datetime.datetime(
+                    year=2018, month=8, day=4, hour=2, minute=3,
+                    second=1): {
+                'postcode': 'PR8 1TN',
+                'searchDistance': '60',
+                'gpPracticeId': 12312,
+                'whenServiceNeeded': '24',
+                'ageGroup': '18-99',
+                'gender': 'm',
+                'pilot_id': '12345',
+                'role': 'User',
+                'result_count': '125',
+                'status': 'failure',
+                'dos_region_name': 'Midlands'
+            },
+            datetime.datetime(
+                    year=2018, month=8, day=5, hour=6, minute=7,
+                    second=9): {
+                'postcode': 'W1A 1AA',
+                'searchDistance': '10',
+                'gpPracticeId': 87656,
+                'whenServiceNeeded': '24',
+                'ageGroup': '10-12',
+                'gender': 'f',
+                'pilot_id': '66625',
+                'role': 'Admin',
+                'result_count': '25',
+                'status': 'success',
+                'dos_region_name': 'South West'
+            }
+        }
+        output_file = io.StringIO()
+        logmunger.write_merged_data_dict_csv(
+            merged_data_dict, output_file)
+        data_rows = output_file.getvalue().split('\r\n')[1:]
+        self.assertIn(
+            '2018-08-04 02:03:01,PR8 1TN,60,12312,24,18-99,m,12345,User,125,'
+            'failure,Midlands',
+            data_rows
+        )
+        self.assertIn(
+            '2018-08-05 06:07:09,W1A 1AA,10,87656,24,10-12,f,66625,Admin,'
+            '25,success,South West',
+            data_rows
         )
