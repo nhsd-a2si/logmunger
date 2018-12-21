@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import copy
+import csv
 import datetime
 import json
 import re
@@ -46,6 +47,16 @@ def parse_sfs_line(sfs_line):
         payload = json.loads(match.group('payload'))
         log_event.update(payload)
     return log_event
+
+
+def process_dos_file(dos_file):
+    dos_data_dict = dict()
+    reader = csv.DictReader(dos_file)
+    for dos_row_dict in reader:
+        log_event = parse_dos_row_dict(dos_row_dict)
+        timestamp = log_event.pop('timestamp')
+        dos_data_dict[timestamp] = log_event
+    return dos_data_dict
 
 
 def parse_dos_row_dict(dos_row_dict):
