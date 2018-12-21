@@ -6,6 +6,12 @@ import json
 import re
 import sys
 
+OUTPUT_FIELDNAMES = (
+    'timestamp', 'postcode', 'searchDistance', 'gpPracticeId',
+    'whenServiceNeeded', 'ageGroup', 'gender', 'pilot_id', 'role',
+    'result_count', 'status', 'dos_region_name'
+)
+
 RE_PARSE_SFS_LINE = re.compile(
     '(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})'
     '.*'
@@ -26,6 +32,11 @@ def parse_args(args):
                         help='path to CSV file containing DoS logs',
                         required=True)
     return parser.parse_args(args)
+
+
+def write_merged_data_dict_csv(merged_data_dict, output_file):
+    writer = csv.DictWriter(output_file, OUTPUT_FIELDNAMES)
+    writer.writeheader()
 
 
 def process_sfs_file(sfs_file):
