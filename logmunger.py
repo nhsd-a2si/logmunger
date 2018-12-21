@@ -27,6 +27,16 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
+def process_sfs_file(sfs_file):
+    sfs_data_dict = dict()
+    for sfs_line in sfs_file:
+        log_event = parse_sfs_line(sfs_line)
+        if log_event:
+            timestamp = log_event.pop('timestamp')
+            sfs_data_dict[timestamp] = log_event
+    return sfs_data_dict
+
+
 def parse_sfs_line(sfs_line):
     log_event = dict()
     match = RE_PARSE_SFS_LINE.search(sfs_line)
