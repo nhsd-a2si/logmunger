@@ -26,7 +26,7 @@ class LogMungerTestCase(unittest.TestCase):
             output
         )
         self.assertIn(
-            '2018-11-13 11:42:05,PR8 1TN,60,12312,24,18-99,m,DIRECTORY_OF_'
+            '2018-11-13 11:42:05,PR8 1TN,60,155695,24,18-99,m,DIRECTORY_OF_'
             'SERVICES (14004),1,,,,',
             output
         )

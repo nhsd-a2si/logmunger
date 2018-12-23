@@ -49,8 +49,14 @@ def write_merged_data_dict_csv(merged_data_dict, output_file):
     for (timestamp, event) in merged_data_dict.items():
         output_row = copy.copy(event)
         output_row['timestamp'] = timestamp
+        process_gp_id(output_row)
         process_service_types(output_row)
         writer.writerow(output_row)
+
+
+def process_gp_id(output_row):
+    if output_row['gpPracticeId']:
+        output_row['gpPracticeId'] = output_row['gpPracticeId']['sourceId']
 
 
 def process_service_types(output_row):

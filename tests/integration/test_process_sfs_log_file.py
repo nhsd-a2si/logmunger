@@ -29,7 +29,9 @@ class ProcessSFSLogFileTestCase(unittest.TestCase):
             {
                 'postcode': 'PR8 1TN',
                 'searchDistance': '60',
-                'gpPracticeId': 12312,
+                'gpPracticeId': {
+                    'sourceId': 155695
+                },
                 'whenServiceNeeded': '24',
                 'ageGroup': '18-99',
                 'gender': 'm',

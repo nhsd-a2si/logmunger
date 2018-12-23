@@ -28,7 +28,9 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
                     second=1): {
                 'postcode': 'PR8 1TN',
                 'searchDistance': '60',
-                'gpPracticeId': 12312,
+                'gpPracticeId': {
+                    'sourceId': 155695
+                },
                 'whenServiceNeeded': '24',
                 'ageGroup': '18-99',
                 'gender': 'm',
@@ -49,7 +51,7 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
                     second=9): {
                 'postcode': 'W1A 1AA',
                 'searchDistance': '10',
-                'gpPracticeId': 87656,
+                'gpPracticeId': None,
                 'whenServiceNeeded': '24',
                 'ageGroup': '10-12',
                 'gender': 'f',
@@ -75,13 +77,13 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
             merged_data_dict, output_file)
         data_rows = output_file.getvalue().split('\r\n')[1:]
         self.assertIn(
-            '2018-08-04 02:03:01,PR8 1TN,60,12312,24,18-99,m,DIRECTORY_OF_'
+            '2018-08-04 02:03:01,PR8 1TN,60,155695,24,18-99,m,DIRECTORY_OF_'
             'SERVICES (14004),1,12345,User,125,'
             'failure,Midlands',
             data_rows
         )
         self.assertIn(
-            '2018-08-05 06:07:09,W1A 1AA,10,87656,24,10-12,f,DIRECTORY_OF_'
+            '2018-08-05 06:07:09,W1A 1AA,10,,24,10-12,f,DIRECTORY_OF_'
             'SERVICES (14222);NHS SOURCE 2 (99),2,66625,Admin,'
             '25,success,South West',
             data_rows
