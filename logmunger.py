@@ -23,7 +23,9 @@ RE_PARSE_SFS_LINE = re.compile(
 def parse_args(args):
     import argparse
     parser = argparse.ArgumentParser(
-        description='Munger for Service Finder + DoS logs')
+        description='Munger for Service Finder + DoS logs. See README.md for '
+                    'details.'
+    )
     parser.add_argument('--sfslog',
                         type=argparse.FileType('r'),
                         help='path to text file containing SFS logs',
