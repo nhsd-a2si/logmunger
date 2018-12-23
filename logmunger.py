@@ -41,17 +41,21 @@ def write_merged_data_dict_csv(merged_data_dict, output_file):
     for (timestamp, event) in merged_data_dict.items():
         output_row = copy.copy(event)
         output_row['timestamp'] = timestamp
-        service_types_list = output_row['serviceTypes']
-        output_row['serviceTypesCount'] = len(service_types_list)
-        service_types = ';'.join([
-             '{data_source} ({source_id})'.format(
-                data_source=service_type['dataSource'],
-                source_id=service_type['sourceId']
-             )
-             for service_type in service_types_list]
-        )
-        output_row['serviceTypes'] = service_types
+        process_service_types(output_row)
         writer.writerow(output_row)
+
+
+def process_service_types(output_row):
+    service_types_list = output_row['serviceTypes']
+    output_row['serviceTypesCount'] = len(service_types_list)
+    service_types = ';'.join([
+         '{data_source} ({source_id})'.format(
+             data_source=service_type['dataSource'],
+             source_id=service_type['sourceId']
+         )
+         for service_type in service_types_list]
+    )
+    output_row['serviceTypes'] = service_types
 
 
 def process_sfs_file(sfs_file):
