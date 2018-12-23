@@ -6,6 +6,9 @@ from ..context import logmunger
 
 class LogMungerTestCase(unittest.TestCase):
     def test_logmunger_main(self):
+        """
+        This reads data from the fixture files named as args below.
+        """
         output_file = io.StringIO()
         logmunger.main(
             output_file,
