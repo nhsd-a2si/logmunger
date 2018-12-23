@@ -40,9 +40,12 @@ def write_merged_data_dict_csv(merged_data_dict, output_file):
     for (timestamp, event) in merged_data_dict.items():
         output_row = copy.copy(event)
         output_row['timestamp'] = timestamp
-        service_types = '{data_source} ({source_id})'.format(
-            data_source=output_row['serviceTypes'][0]['dataSource'],
-            source_id=output_row['serviceTypes'][0]['sourceId']
+        service_types = ';'.join([
+             '{data_source} ({source_id})'.format(
+                data_source=service_type['dataSource'],
+                source_id=service_type['sourceId']
+             )
+             for service_type in output_row['serviceTypes']]
         )
         output_row['serviceTypes'] = service_types
         writer.writerow(output_row)

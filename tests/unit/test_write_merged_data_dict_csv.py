@@ -57,6 +57,10 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
                     {
                         'dataSource': 'DIRECTORY_OF_SERVICES',
                         'sourceId': 14222
+                    },
+                    {
+                        'dataSource': 'NHS SOURCE 2',
+                        'sourceId': 99
                     }
                 ],
                 'pilot_id': '66625',
@@ -78,7 +82,7 @@ class WriteMergedDataDictCSVTestCase(unittest.TestCase):
         )
         self.assertIn(
             '2018-08-05 06:07:09,W1A 1AA,10,87656,24,10-12,f,DIRECTORY_OF_'
-            'SERVICES (14222),66625,Admin,'
+            'SERVICES (14222);NHS SOURCE 2 (99),66625,Admin,'
             '25,success,South West',
             data_rows
         )
