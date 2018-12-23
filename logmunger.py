@@ -35,6 +35,14 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
+def main(output_file, *args):
+    parsed_args = parse_args(args[1:])
+    sfs_data_dict = process_sfs_file(parsed_args.sfslog)
+    dos_data_dict = process_dos_file(parsed_args.doslog)
+    merged_data_dict = merge_logs(sfs_data_dict, dos_data_dict)
+    write_merged_data_dict_csv(merged_data_dict, output_file)
+
+
 def write_merged_data_dict_csv(merged_data_dict, output_file):
     writer = csv.DictWriter(output_file, OUTPUT_FIELDNAMES)
     writer.writeheader()
@@ -108,5 +116,6 @@ def merge_logs(sfs_log, dos_log):
             payload.update(dos_log[timestamp])
     return result
 
+
 if __name__ == '__main__':
-    parse_args(sys.argv[1:])
+    main(sys.stdout, *sys.argv)
