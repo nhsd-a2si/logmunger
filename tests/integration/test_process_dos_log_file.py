@@ -45,3 +45,19 @@ class ProcessDoSLogFileTestCase(unittest.TestCase):
             },
             dos_data_dict[record2_timestamp]
         )
+
+    def test_space_only_lines_ignored(self):
+        with open('tests/fixtures/bad_dos_log_space_lines.csv', 'r')\
+                as dos_file:
+            try:
+                logmunger.process_dos_file(dos_file)
+            except TypeError:
+                self.fail('TypeError raised unexpectedly!')
+
+    def test_missing_date_ignored(self):
+        with open('tests/fixtures/bad_dos_log_empty_date.csv', 'r') \
+                as dos_file:
+            try:
+                logmunger.process_dos_file(dos_file)
+            except ValueError:
+                self.fail('ValueError raised unexpectedly!')

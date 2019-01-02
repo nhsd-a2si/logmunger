@@ -100,20 +100,22 @@ def process_dos_file(dos_file):
     reader = csv.DictReader(dos_file)
     for dos_row_dict in reader:
         log_event = parse_dos_row_dict(dos_row_dict)
-        timestamp = log_event.pop('timestamp')
-        dos_data_dict[timestamp] = log_event
+        if log_event:
+            timestamp = log_event.pop('timestamp')
+            dos_data_dict[timestamp] = log_event
     return dos_data_dict
 
 
 def parse_dos_row_dict(dos_row_dict):
     log_event = dict()
-    log_event['timestamp'] = datetime.datetime.strptime(
-        dos_row_dict['Date & Time'][:19], '%Y/%m/%d %H:%M:%S')
-    log_event['pilot_id'] = dos_row_dict['Pilot ID']
-    log_event['role'] = dos_row_dict['Role']
-    log_event['result_count'] = dos_row_dict['result_count']
-    log_event['status'] = dos_row_dict['status']
-    log_event['dos_region_name'] = dos_row_dict['dosRegionName']
+    if dos_row_dict['Date & Time']:
+        log_event['timestamp'] = datetime.datetime.strptime(
+            dos_row_dict['Date & Time'][:19], '%Y/%m/%d %H:%M:%S')
+        log_event['pilot_id'] = dos_row_dict['Pilot ID']
+        log_event['role'] = dos_row_dict['Role']
+        log_event['result_count'] = dos_row_dict['result_count']
+        log_event['status'] = dos_row_dict['status']
+        log_event['dos_region_name'] = dos_row_dict['dosRegionName']
     return log_event
 
 
