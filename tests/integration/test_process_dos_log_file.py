@@ -53,3 +53,11 @@ class ProcessDoSLogFileTestCase(unittest.TestCase):
                 logmunger.process_dos_file(dos_file)
             except TypeError:
                 self.fail('TypeError raised unexpectedly!')
+
+    def test_missing_date_ignored(self):
+        with open('tests/fixtures/bad_dos_log_empty_date.csv', 'r') \
+                as dos_file:
+            try:
+                logmunger.process_dos_file(dos_file)
+            except ValueError:
+                self.fail('ValueError raised unexpectedly!')
