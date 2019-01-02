@@ -1,0 +1,6 @@
+_raw,Date & Time,cmsgender,cmssgsdid,code,Service Searched,dosRegionName,org_type_description,gpPracticeId,locality,reason,result_count,service,status,town,transaction_id,Pilot ID,Role
+ 
+2018/11/01 02:33:09.000000+0000|info|responsive|0C9AEED3-9167-1707-561F-FC34C54C47E4|35.171.227.145|Rxxhiexx18|ServiceFinderSearch|request|success|cmsorgstatus=active|searchRadius=446810:253488:527027:333905|cmspatientaccess=2|restricttoreferrals=FALSE|cmssgsdid=360=14004|catch_all=FALSE|easting=370049|northing=430446|dosregion=100000009|town=PRESTON|result_count=5|execution_time=0.544|,2018/11/01 02:33:09,,360=14004,14004,Care Home,London,,,,,15,ServiceFinderSearch,success,PRESTON,0C9AEEF3-9167-1707-561F-FC34C54C47E4,12345,Admin
+ 
+2018/11/13 11:42:09.000000+0000|info|responsive|0C9AEEF3-9167-1707-561F-FC34C54C47E4|35.171.227.145|Rxxhiexx18|ServiceFinderSearch|request|success|cmsorgstatus=active|searchRadius=446810:253488:527027:333905|cmspatientaccess=2|restricttoreferrals=FALSE|cmssgsdid=360=14004|catch_all=FALSE|easting=370049|northing=430446|dosregion=100000009|town=PRESTON|result_count=5|execution_time=0.544|,2018/11/13 11:42:09,,360=14004,14004,Care Home,North West,,,,,5,ServiceFinderSearch,success,PRESTON,0C9AEEF3-9167-1707-561F-FC34C54C47E4,99007,Admin
+ 
